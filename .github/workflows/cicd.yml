@@ -47,7 +47,7 @@ jobs:
 
       - name: Push frontend image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-react-ap:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-react-app:latest
 
 
 
