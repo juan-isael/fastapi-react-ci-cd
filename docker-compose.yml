@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+    image: my-react-app
+    ports:
+      - "3000:80"
+
+  backend:
+    build:
+      context: ./backend
+    image: my-api
+    expose:
+      - "8000"
