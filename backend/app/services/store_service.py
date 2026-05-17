@@ -20,7 +20,7 @@ def add_pair_service(pair):
     }
 
 
-def add_to_car_service(key: str):
+def add_to_cart_service(key: str):
 
     global subtotal, total
     

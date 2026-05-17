@@ -14,6 +14,9 @@ class Dictionary:
     def get_dictionary(self):
         return self._data
 
+    def clean_dictionary(self):
+        self._data.clear()
+
     # def __contains__(self, key):
     #     return key in self._data
 
