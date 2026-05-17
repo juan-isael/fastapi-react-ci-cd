@@ -10,7 +10,7 @@ jobs:
   test-backend:
     runs-on: ubuntu-latest
     steps:
-      - name: clone repo Checkout repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: install python
@@ -26,6 +26,12 @@ jobs:
       - name: run tests
         working-directory: ./backend
         run: pytests || true
+
+      - name: build backend image
+        run: docker build -t my-api ./backend
+
+      - name: build frontend image
+        run: docker build -t my-react-app ./frontend
 
 
 
