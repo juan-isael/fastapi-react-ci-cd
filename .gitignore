@@ -35,4 +35,5 @@ lerna-debug.log*
 # Docker
 **/tmp
 
-Python.pdf
+#Docs
+*.pdf
