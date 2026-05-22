@@ -1,0 +1,64 @@
+body {
+
+    min-height: 100vh;
+    
+    /* background:
+        linear-gradient(
+            to bottom right,
+            #f8fafc,
+            #e2e8f0
+        ); */
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #e0f2fe 45%,
+            #bfdbfe 100%
+        );
+
+    /* background:
+    linear-gradient(
+        to bottom right,
+        #ffffff,
+        #f0f9ff,
+        #dbeafe
+    ); */
+    /* background-color: #f4f7fb; */
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+}
+
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 18px;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* Hover effect */
+.card:hover {
+    transform: translateY(-6px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* Buttons */
+.btn {
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+/* Titles */
+h1, h2 {
+    font-weight: 700;
+}

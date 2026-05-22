@@ -1,56 +1,77 @@
 import { useState } from "react";
+import { createWord } from "./services/api";
 
 function NewWord() {
 
     const [words, setWords] = useState("");
     const [newWord, setNewWord] = useState("");
 
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+
     const getNewWord = async (e) => {
 
-        e.preventDefault();
+        try{
+            e.preventDefault();
+            setLoading(true);
+            setError("");
 
-        const arr_words = words.split(",").map(item => item.trim());
+            const data = await createWord(words);
 
-        const params = new URLSearchParams();
-        arr_words.forEach(item => params.append("arr", item));
-
-        // const res = await fetch(`http://backend:8000/create?${params}`);
-        const res = await fetch(`/api/create?${params}`);
-        const data = await res.json();
-
-        setNewWord(data);
+            setNewWord(data);
+        } catch (err) {
+            setError(`Something went wrong`);
+            console.log(err);
+        } finally {
+            setLoading(false);
+        }
 
     }
 
-    return (<>
-        <h2>TASK 3</h2>
-        <form onSubmit={getNewWord}>
-            <div className="row  g-3 align-items-center">
-                <div className="col-auto">
-                    <label htmlFor="inputWords" className="col-form-label">Words</label>
-                </div>
-                <div className="col-auto">
-                    <input 
-                        type="text" 
-                        id="inputWords" 
-                        className="form-control" 
-                        aria-describedby="wordHelpInline" 
-                        placeholder="word1,word2,word3"
-                        value={words}
-                        onChange={(e) => setWords(e.target.value)}
-                        required/>
-                </div>
-                <label htmlFor="resultOutput" className="col-auto">Result:</label>
-                {newWord.new_word ? <output id="resultOutput" className="col-auto">{newWord.new_word}</output> : <output id="resultOutput" className="col-auto">{newWord?.description}</output>}
+    return (
+        <div className="card shadow h-100">
+            <div className="card-body p-4">
+                <h2>CREATE NEW WORD</h2>
+                <form onSubmit={getNewWord}>
+                    <div className="mt-3 mb-3">
+                        <label htmlFor="inputWords" className="form-label">Words</label>
+                        <input 
+                            type="text" 
+                            id="inputWords" 
+                            className="form-control mb-2" 
+                            aria-describedby="wordHelpInline" 
+                            placeholder="word1,word2,word3"
+                            value={words}
+                            onChange={(e) => setWords(e.target.value)}
+                            required/>
+                        <span id="wordHelpInline" className="form-text">
+                        Enter the words separated by commas.
+                        </span>
+                    </div>
+                    {loading && <p>Loading...</p>}
+
+                    {error && (
+                        <div className="alert alert-danger">
+                            {error}
+                        </div>
+                    )}
+
+                    {newWord && (
+                        <div className="row align-items-center">
+                            <div className="col-3 mb-3">
+                                <label htmlFor="resultOutput">Result:</label>
+                            </div>
+                            {newWord.new_word 
+                                ? <output id="resultOutput" className="col-9 alert alert-success">{newWord.new_word}</output> 
+                                : <output id="resultOutput" className="col-9 alert alert-warning">{newWord?.description}</output>
+                            }
+                        </div>
+                    )}
+                    <button type="submit" className="btn btn-secondary">Submit</button>
+                </form>
             </div>
-            <div className="col-auto mb-3">
-                <span id="wordHelpInline" className="form-text">
-                Enter the words separated by commas.
-                </span>
-            </div>
-            <button type="submit" className="btn btn-secondary">Submit</button>
-        </form>
-    </>);
+        </div>
+    );
 
 }
 

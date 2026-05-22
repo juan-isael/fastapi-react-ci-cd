@@ -6,6 +6,14 @@ This project is a fullstack web application built with FastAPI and React. It imp
 
 ---
 
+## 📸 Screenshots
+
+### Dashboard Overview
+
+![Application Dashboard](./screenshots/dashboard.png)
+
+---
+
 
 ## 🛠 Tech Stack
 
@@ -89,13 +97,13 @@ This project uses GitHub Actions to automate the CI/CD workflow on every push:
 
 ## 📌 Features
 
-### 1. Dictionary Service
+### 1. Add items - Dictionary Service
 Stores key-value pairs in a simple in-memory structure to simulate a library of products.
 
-### 2. Cart Management System
+### 2. Select items - Cart Management System
 Allows users to add items from the simulated library of products and calculates subtotal, tax and total.
 
-### 3. Word Construction Service
+### 3. Create New Word - Word Construction Service
 Builds a new word by selecting characters based on index positions:
 
 Example:
